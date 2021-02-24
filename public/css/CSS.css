@@ -1,0 +1,64 @@
+body
+{
+    background: url(/images/BG.png);
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}
+#videoele
+{
+    width: 440px;
+    height: 200px;
+    background-color: #666;
+}
+#text
+{
+    padding-left: 15px;
+    width: 290px;
+    height: 40px;
+    margin-left: 790px;
+    margin-top: -190px;
+
+}
+
+#textpict
+{
+    margin: 100px;
+}
+#buttonpos
+{
+    margin-left: 150px;
+}
+#button
+{
+    margin-right: 450px;
+    margin-top: 3px;
+
+}
+#camera
+{
+    margin: -1px;
+    margin-left: 280px;
+    
+    width: 320px;
+    height:230px;
+    border: 3px solid black;
+}
+#tbh
+{
+    font-family:inherit;
+    font-size: 35px;
+    color:white;
+}
+#tabcol
+{
+    color:firebrick;
+}
+.container
+{
+    height: 270px;
+    overflow: scroll;
+    
+}

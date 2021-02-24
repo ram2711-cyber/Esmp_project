@@ -1,0 +1,86 @@
+<html>
+<head>
+    <title>ESMP</title>
+    <link rel="stylesheet" type="text/css" href="/css/CSS.css">
+    <script src="/js/JS.js"></script>
+    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <body>
+       <div class="row">
+        <div  class="card-body"> 
+          <div class="booth"id="camera"> 
+              <video id="video" width="100%" 
+                  height="100%" autoplay> 
+              </video> 
+          </div> 
+
+          <div id="button" class="text-right text-center " > 
+              
+              <a href="#!" class="btn btn-success" onClick="start()">Start Cam</a> 
+              <a href="#!" class="btn btn-danger" onClick="stop()"> Stop Cam </a>     
+          </div> 
+      </div> 
+      <div id="text">
+        <form action="/" method="POST">
+          <input name="vehicleNo" placeholder="Vehicle No">
+          <button type="submit">Add</button>
+        </form>
+      </div>
+       </div>
+
+        <h3 id="tbh" class="text-center text-font"><b>CUSTOMER LOGS</b></h2>
+        <div class="row">
+            <div class="container">                                                      
+              <table id="x" class="table table-bordered table-hover table-responsive-sm">
+                <thead class="text-center">
+                  <tr class="bg-dark text-white" >
+                    <th>Vehicle No</th>
+                    <th>In Time</th>
+                    <th>Out Time</th>
+                    <th>Amount To be paid (RS)</th>
+                    <th>Payment Status</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center bg-white">
+                  <% rows.forEach(result=>{%>
+                    <tr>
+                      <td><%= result.vehicle_no %></td>
+                      <td><% let date = new Date(result.in_time) %>
+                        <% let tmp=date.toString(); %>
+                        <% let res=tmp.split(" "); %>
+                        <%= res[4] %>
+                      </td>
+                      <td>
+                        <%if(result.out_time != 0){date = new Date(result.out_time);tmp=date.toString();res=tmp.split(" "); res=res[4]} else {res='-'}%>
+                        <%= res %>
+                      </td>
+                      <td>
+                        <% let amount=0 %>
+                        <% if(result.out_time > 0) {%>
+                        <% amount=result.out_time-result.in_time %>
+                        <% amount=(amount/(1000*60)) %>
+                        <% amount=Math.round(amount)} %>
+                        <%= amount %>
+                      </td>
+                      <td>
+                        <% let pd="Unpaid" %>
+                        <% if(result.paid > 0){%>
+                        <% pd="Paid" } %>
+                        <%= pd %>
+                      </td>
+                    </tr>
+                  <%})%>
+                </tbody>
+              </table>
+            </div>
+        </div>
+                
+    
+    </body>
+    </head>
+</html>
